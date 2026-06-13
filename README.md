@@ -31,12 +31,12 @@
 [!] Required PKGs: 
 - openbsd-netcat curl tor iptables iproute2 coreutils util-linux bash iptables-nft nftables sudo
 
-[!] Script actions: --start, --stop, --restart, --boot-enable, --boot-disable, --myip, --change, --set-bridges --reset-config, --help.
+[!] Script actions: --start, --stop, --restart, --boot-enable, --boot-disable, --myip, --changeid, --set-bridges --reset-config, --help.
 
 [!] To use it right now: 
-- Note: always run this as root, (if you have sudo/git installed on your system)
-- git clone https://github.com/NewMaster27/onionbox && cd onionbox && chmod +x * && ./onionbox help
+- Note: always run this as root, (if you have sudo/git installed in your system)
+- git clone https://github.com/0xmalaquias/TheOnionBox && cd TheOnionBox && chmod +x * && ./onionbox help
 
 [!] In addition:
-- Recommended: Configure a secure non standard/common browser(like tor's one, it is easy). 
+- Recommended: Configure a secure non standard/common browser(like tor's one, sometimes it is easy). 
 - Recommended: Use Tor bridges or a VPN connection, just in case you want to be 100% sure that your ISP wont be able to see your connection nodes!!
