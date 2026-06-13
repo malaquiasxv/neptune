@@ -97,12 +97,11 @@ if [ ! -f /etc/systemd/system/onionbox.service ] && command -v systemctl >/dev/n
     touch /etc/systemd/system/onionbox.service
     cat << 'EOT' > /etc/systemd/system/onionbox.service
     [Unit]
-    Description=The OnionBox Custom Service Here !!
+    Description=TheOnionBox Custom Service Here !!
     [Service]
     Type=forking
     ExecStart=onionbox start
     RemainAfterExit=yes
-    User=root
     [Install]
     WantedBy=multi-user.target
 EOT
@@ -142,19 +141,18 @@ fi
 
 help(){
    echo -e "\n${P}[${NC} Script Actions ${P}]${NC}"
-   echo -e "\n${P}[${NC}0${P}]${NC} --start|-start|start: ${GREEN}Starts Tor and apply Firewall rules${NC}"
-   echo -e "\n${P}[${NC}1${P}]${NC} --stop|-stop|stop: ${GREEN}Stops Tor and restart Firewall rules to default's${NC}"
-   echo -e "\n${P}[${NC}2${P}]${NC} --restart|-restart|restart: ${GREEN}Restarts Tor and Firewall rules${NC}"
-   echo -e "\n${P}[${NC}3${P}]${NC} --status|-status|status: ${GREEN}Launches nyx'x Tor process real time viewer(TUI based)${NC}"
-   echo -e "\n${P}[${NC}4${P}]${NC} --boot-enable|-boot-enable|boot-enable: ${GREEN}Disables start's action on boot ${NC}"
-   echo -e "\n${P}[${NC}5${P}]${NC} --boot-disable|-boot-disable|boot-disable: ${GREEN}Enables start's action on boot ${NC}"
-   echo -e "\n${P}[${NC}6${P}]${NC} --myip|-myip|myip: ${GREEN}Prints IP Address${NC}"
-   echo -e "\n${P}[${NC}7${P}]${NC} --changeid|-changeid|changeid: ${GREEN}Changes Tor's IP Address${NC}"
-   echo -e "\n${P}[${NC}8${P}]${NC} --fix|-fix|fix: ${GREEN}Fixes your internet connection(not trough tor, can expose your IP address) ${NC}"
+   echo -e "\n${P}[${NC}1${P}]${NC} --start|-start|start: ${GREEN}Starts Tor and apply Firewall rules${NC}"
+   echo -e "\n${P}[${NC}2${P}]${NC} --stop|-stop|stop: ${GREEN}Stops Tor and restart Firewall rules to default's${NC}"
+   echo -e "\n${P}[${NC}3${P}]${NC} --restart|-restart|restart: ${GREEN}Restarts Tor and Firewall rules${NC}"
+   echo -e "\n${P}[${NC}4${P}]${NC} --status|-status|status: ${GREEN}Launches nyx'x Tor process real time viewer(TUI based)${NC}"
+   echo -e "\n${P}[${NC}5${P}]${NC} --boot-enable|-boot-enable|boot-enable: ${GREEN}Disables start's action on boot ${NC}"
+   echo -e "\n${P}[${NC}6${P}]${NC} --boot-disable|-boot-disable|boot-disable: ${GREEN}Enables start's action on boot ${NC}"
+   echo -e "\n${P}[${NC}7${P}]${NC} --myip|-myip|myip: ${GREEN}Prints IP Address${NC}"
+   echo -e "\n${P}[${NC}8${P}]${NC} --changeid|-changeid|changeid: ${GREEN}Changes Tor's IP Address${NC}"
    echo -e "\n${P}[${NC}9${P}]${NC} --set-bridges|-set-bridges|-b: usage: ${GREEN}onionbox -b ${NC}</path/to/bridges/file> <bridges_kind> </path/to/binary>"
    echo -e "\n${P}[${NC}10${P}]${NC} --restart-torrc|-restart-torrc|-rc: ${GREEN}Is in the name, restarts /etc/tor/torrc ${GREEN}to script's default ${NC}"
-   echo -e "\n${P}[${NC}10${P}]${NC} --link|-link|-l: ${GREEN}Resolves .onion links via tor(requires curl)${NC}"
-   echo -e "\n${P}[${NC}11${P}]${NC} --help|-help|help|-h: ${GREEN}Prints this help page${NC}"
+   echo -e "\n${P}[${NC}11${P}]${NC} --link|-link|-l: ${GREEN}Resolves .onion links via tor(requires curl)${NC}"
+   echo -e "\n${P}[${NC}12${P}]${NC} --help|-help|help|-h: ${GREEN}Prints this help page${NC}"
 }
 
 myip(){
