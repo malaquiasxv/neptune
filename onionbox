@@ -242,7 +242,7 @@ table inet onionbox_filter {
 
 table ip onionbox_nat {
     chain tor_nat_out {
-        type nat hook output priority filter - 10; policy accept;
+        type nat hook output priority filter 100; policy accept;
         meta skuid "tor" return
         ip daddr { 127.0.0.0/8, 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16, 169.254.0.0/16, 224.0.0.0/4, 255.255.255.255 } return
         udp dport 53 redirect to :5353
