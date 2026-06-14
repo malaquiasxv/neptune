@@ -31,7 +31,7 @@
 [!] Required PKGs: 
 - openbsd-netcat curl tor iptables iproute2 coreutils util-linux bash iptables-nft nftables sudo
 
-[!] Script actions: --start, --stop, --restart, --boot-enable, --boot-disable, --myip, --changeid, --set-bridges --reset-config, --link, --help. Run 'onionbox --help', for detailed info
+[!] Script actions: --start, --stop, --restart, --boot-enable, --boot-disable, --myip, --changeid, --set-bridges --reset-config, --link, --show-config, --help. Run 'onionbox --help', for detailed info
 
 [!] To use it right now: 
 - Note: always run this as root, (if you have sudo/git installed in your system)
