@@ -17,13 +17,13 @@
 
 [!] Script content(inside TheOnionBox's dir):
 
-- example_bridges.txt >> It is just a list of tor bridges, you can grab them from here: .
+- example_bridges.txt >> It is just a list of tor bridges, you can grab them from here: https://bridges.torproject.org/options/en, or, if you prefer .onion: kgclfuro65jjlivyzfmxiq2kyv5lickrl4qd.onion/options/en
 
 - onionbox >> This is the main script, contains all the actions, from here you run "./onionbox start".
 
 - osh >> An ultra simple/fast user-friendly shell that only speaks TheOnionBox params, ex: "start", "stop", "myip", etc.
 
-- try-dot-onion >> Try curl .onion addresses(this script comes ith some of them, as duckduckgo, hiddenwiki, etc) by running ./try-dot-onion, uses default's socks5 proxy address(127.0.0.1:9150), might fail if you use different one or if tor is not running.
+- try-dot-onion >> Try to curl .onion addresses(this script comes ith some of them, for example: duckduckgo, hiddenwiki, etc) by running ./try-dot-onion, uses default's socks5 proxy address(127.0.0.1:9150), might fail if you use different one or if tor is not running.
 
 [!] Script actions: 
 
