@@ -5,7 +5,7 @@
 
 # [ Requeriments ] # 
 [*] Required PKGs: 
-- openbsd-netcat curl tor coreutils util-linux bash nftables/iptables sudo(some pkg names are different, depends entirely on your pkg manager/distro).
+- openbsd-netcat curl tor coreutils util-linux bash nftables/iptables sudo(some pkg names are different, depends entirely on your distro’s pkg manager).
 
 # [ Content ] #
 
