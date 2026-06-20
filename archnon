@@ -314,9 +314,13 @@ fi
 
    sleep 8
 
-   sudo -u $TOR_USER tor --RunAsDaemon 1 >/dev/null 2>&1
+   if ss -tulpn | grep -iE "6969|9150|9151" >/dev/null 2>&1 || pgrep -a tor | grep -IE "tor" >/dev/null 2>&1; then
    echo -e "\n${BLUE}[${GREEN}notice${BLUE}]${GREEN} ArchNoN is running ${BLUE}(${GREEN}done${BLUE})${NC}"
    echo -e "\n${BLUE}[${GREEN}notice${BLUE}]${GREEN} Note: To resolv ${P}.onion ${GREEN}addresses you just have to type '${YELLOW}archnon link <link>'${NC}"
+   else
+   echo -e "\n${RED}[${GREEN}err${RED}]${GREEN} For some reason, script could not start...${NC}"
+   exit 1
+   fi
 }
 
 
