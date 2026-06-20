@@ -50,7 +50,7 @@ if ! (command -v nc >/dev/null 2>&1 && command -v curl >/dev/null 2>&1 && comman
 
         elif [[ $(command -v yum) ]]; then
 
-              pkgs=( nmap-ncat curl tor nftables procps-ng NetworkManager iproute coreutils util-linux bash sudo )
+              pkgs=( epel-release nmap-ncat curl tor nftables procps-ng NetworkManager iproute coreutils util-linux bash sudo )
           
               if ! yum -y install "${pkgs[@]}"; then
 	             echo -e "${RED}[${GREEN}err${RED}]${BLUE} Missing dependencies: ${YELLOW}(${GREEN}${pkgs[@]}${YELLOW}) !!${NC}"
