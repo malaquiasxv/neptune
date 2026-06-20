@@ -1,5 +1,5 @@
 # < --- [ ArchNoN Project ] --- > #
-[*] Bash based Anonimation tool that uses Tor's strongest privacy configuration, including a no IPv6 policy and a secure nftables firewall stack for linux only.
+[*] Bash based Anonimation tool that uses Tor's strongest privacy configuration, including a no IPv6 policy and a secure nftables firewall stack for linux distros.
 
 [warn] ArchNoN is a personal project developed by 0xmalaquias@github.com, if you will use it you have to know that developer wont answer in case of any issue occurs in your machine(perhaps, issues are not common, in fact, they are incredible weird)
 
