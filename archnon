@@ -157,7 +157,7 @@ echo -e "\n${RED}[${YELLOW}warn${RED}]${GREEN} Tor's configuration file is not v
 fi
 
 help(){
-   echo -e "\n${P}[${BLUE} ArchNoN Anonimation Tool ${P}] ${YELLOW}-> [ ${BLUE}v3.0.6${YELLOW}]${NC}"
+   echo -e "\n${P}[${BLUE} ArchNoN Anonimation Tool ${P}] ${YELLOW}-> [ ${BLUE}v3.0.6 ${YELLOW}]${NC}"
    echo -e "\n${BLUE}[${GREEN}notice${BLUE}]${GREEN} Developed by: ${RED}newmasterone27@gmail.com${NC}"
    echo -e "\n${BLUE}[${YELLOW}warn${BLUE}]${GREEN} Usage:${P} sudo archnon ${P}<${NC}action${P}>${NC}"
    echo -e "\n${YELLOW}[ ${BLUE}start${YELLOW} ] --> ${GREEN}Start ${BLUE}ArchNoN and ${YELLOW}Apply Firewall rules${NC}"
