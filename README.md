@@ -7,7 +7,7 @@
 
 
 # [ Requeriments ] # 
-- [warn] Required PKGs: (bash, coreutils, util-linux), all other pkgs can be managed by tool, actually.
+- [warn] Required PKGs: (bash, if not installed), all other pkgs can be managed by tool, actually.
 - [warn] Extra: Real full root access(to apply firewall rules and curl links normally as before, i mean, without needing the flag '--socks5-hostname 127.0.0.1:9150')
 
 
