@@ -3,21 +3,20 @@
 RED="\e[1;31m"                                                                                                                                                                                          
 GREEN="\e[1;32m"                                                                                                                                                                                
 BLUE="\e[1;34m"                                                                                                                                                                         
-P="\e[1;35m"                                                                                                                                                                    
-WHITE="\e[1;37m"                                                                                                                                                        
+P="\e[1;35m"                                                                                                                                                                                                                                                                                                                        
 YELLOW="\e[1;33m"                                                                                                                                                      
 NC="\e[0m"
 
 export SOCKS5_HOST=127.0.0.1
 export SOCKS5_PORT=9150
 
-echo -e "\n${BLUE}[${GREEN}INFO${BLUE}]${GREEN} Starting ${P}.onion ${GREEN}links resolution test...${NC}"
-echo -e "\n${BLUE}[${GREEN}INFO${BLUE}]${GREEN} SOCKS5 Address: ${YELLOW}$SOCKS5_HOST${GREEN}:${YELLOW}$SOCKS5_PORT${NC}"
+echo -e "\n${BLUE}[${GREEN}notice${BLUE}]${GREEN} Starting ${P}.onion ${GREEN}links resolution test...${NC}"
+echo -e "\n${BLUE}[${GREEN}notice${BLUE}]${GREEN} SOCKS5 Address${BLUE}(${GREEN}default${BLUE})${GREEN}: ${YELLOW}$SOCKS5_HOST${GREEN}:${YELLOW}$SOCKS5_PORT${NC}"
 
 links=( http://yq5jjvr7drkjrelzhut7kgclfuro65jjlivyzfmxiq2kyv5lickrl4qd.onion http://zqktlwiuavvvqqt4ybvgvi7tyo4hjl5xgfuvpdf6otjiycgwqbym2qad.onion https://duckduckgogg42xjoc72x3sjasowoarfbgcmvfimaftt6twagswzczad.onion/ http://jaz45aabn5vkemy4jkg4mi4syheisqn2wn2n4fsuitpccdackjwxplad.onion/ http://o54hon2e2vj6c7m3aqqu6uyece65by3vgoxxhlqlsvkmacw6a7m7kiad.onion/en )
 
 for l in ${links[@]}; do
-   curl --socks5-hostname $SOCKS5_HOST:$SOCKS5_PORT $l >/dev/null 2>&1 && echo -e "\n${BLUE}[${GREEN}STATUS${BLUE}] ${YELLOW}$l${WHITE}, ${GREEN}resolved${NC}" || echo -e "\n${RED}[${WHITE}STATUS${RED}]${WHITE} Could not resolv: ${YELLOW}"$l"${NC}"
+   curl --socks5-hostname $SOCKS5_HOST:$SOCKS5_PORT $l >/dev/null 2>&1 && echo -e "\n${BLUE}[${GREEN}notice${BLUE}] ${YELLOW}$l${WHITE}, ${GREEN}resolved${NC}" || echo -e "\n${RED}[${GREEN}err${RED}]${GREEN} Could not resolv: ${YELLOW}"$l"${NC}"
  done
 
- echo -e "\n${BLUE}[${GREEN}INFO${BLUE}]${GREEN} Test finished${NC}"
+ echo -e "\n${BLUE}[${GREEN}notice${BLUE}]${GREEN} Test finished${NC}"
