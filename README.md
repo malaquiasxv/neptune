@@ -30,7 +30,7 @@
 
 - stop --> Stop ArchNoN and Flush Firewall rules.
 
-- restart--> Restart ArchNoN.
+- restart --> Restart ArchNoN.
 
 - boot-enable --> Enable ArchNoN on boot.
 
