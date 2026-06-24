@@ -17,11 +17,6 @@
 
 - example_bridges.txt >> It is just a list of tor bridges, you can grab them from here: https://bridges.torproject.org/options/en, or, if you prefer .onion: kgclfuro65jjlivyzfmxiq2kyv5lickrl4qd.onion/options/en
 
-- try-dot-onion >> Try to curl .onion addresses(this script comes with some of them, for example: duckduckgo, hiddenwiki, etc) by running ./try-dot-onion, uses default's socks5 proxy address(127.0.0.1:9150), it might fail if you use a different address/tor is not running.
-
-- make_it_work >> ./make_it_work, script you run to move archnon to your $PATH(/usr/bin dir), (run as root always).
-
-
 # [ Script Params/Actions ] #
 
 - [warn] usage: archnon [ACTION]
@@ -56,7 +51,7 @@
 
 
 # [ Clone ] #
-- [warn] Run as root: git clone https://github.com/0xmalaquias/ArchNoN && cd ArchNoN && chmod +x * && ./make_it_work
+- [warn] Run as root: git clone https://github.com/0xmalaquias/ArchNoN && cd ArchNoN && chmod +x * && ./archnon
 
 
 # [ Boot ] #
