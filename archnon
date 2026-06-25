@@ -20,8 +20,7 @@ NC="\e[0m"
 
 # Banner
 
-echo -e "${BLUE}< ---- [ ${LB}ArchNoN${YELLOW} v3.0.7${NC}, by: ${ORANGE}newmasterone27@gmail.com ${BLUE}] ---- >${NC}"
-sleep 1
+echo -e "${BLUE}<[ ${LB}ArchNoN${YELLOW} v3.0.7${NC}, by: ${ORANGE}newmasterone27@gmail.com ${BLUE}]>${NC}"
 
 # Dependencies && pkg managers
 
