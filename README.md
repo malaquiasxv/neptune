@@ -1,6 +1,6 @@
-# <[ ArchNoN Anonimation Tool v3.0.7 ]> #
+# <[ ArchNoN's Anonimation Suite v3.0.7 ]> #
 
-[desctiption] Anonimation tool that makes your linux machine's internet traffic go through a secure firewall (nftables based) that only speaks Tor and no IPv6 policy. Includes boot automation for the most used service managers and some more useful scripts as: a Torrc config manager, sys daemon and a Socks5 DNS's resolvtool.
+[desctiption] Anonimation Toolkit that ensures your linux machine's internet traffic go through a secure firewall (nftables based) and the Tor network with no IPv6 policy(leak prevention feature). Includes boot automation for the most used service managers and some useful scripts like: A simple Tor config manager, a sys daemon(prevent archnon's PID to get killed ramdomly), and a Socks5's DNS resolution tool.
 
 - [warn] ArchNoN is a personal project developed by newmasterone27@gmail.com, if you will use it you have to know that developer wont answer in case of any issue occurs in your machine(perhaps, issues are not common, in fact, they are incredible weird).
 
