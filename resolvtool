@@ -23,7 +23,7 @@ echo -e "\n${ORANGE}<[ ${P}ResolvTool ${YELLOW}v1.0.0${NC} By: ${BLUE}newmastero
 
 usage(){
 echo -e "\n${LB}[${ORANGE}!${LB}]${GREEN} usage: ${P}resolvtool ${NC}<${LB}option${NC}>${NC}"
-echo -e "\n${BLUE}[${YELLOW}1${BLUE}]${ORANGE} -L${BLUE}|${ORANGE}--link${NC}<${P}link${NC}>${NC}"
+echo -e "\n${BLUE}[${YELLOW}1${BLUE}]${ORANGE} -L${BLUE}|${ORANGE}--link ${NC}<${P}link${NC}>${NC}"
 echo -e "\n${BLUE}[${YELLOW}2${BLUE}]${ORANGE} -S${BLUE}|${ORANGE}--socks-addr ${NC}<${P}addr${NC}> <${P}link${NC}>${NC}"
 }
 
