@@ -257,7 +257,7 @@ esac
 done
 
 if [ -z $mode ]; then
-    echo -e "\n${RED}[${NC}-${RED}]${NC} Bad usage: ${RED}Missing action${NC}"
     usage
+    echo -e "\n${RED}[${NC}-${RED}]${NC} Bad usage: ${RED}Missing action${NC}"
     exit 1
 fi
