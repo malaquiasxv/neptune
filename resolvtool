@@ -1,0 +1,104 @@
+#!/bin/bash
+
+# Colors
+
+RED="\e[1;31m"
+
+GREEN="\e[1;32m"
+
+BLUE="\e[1;34m"
+
+P="\e[1;35m"
+
+YELLOW="\e[1;33m"
+
+ORANGE="\e[38;5;214m"
+
+LB="\e[36m"
+
+NC="\e[0m"
+
+echo -e "\n${ORANGE}<~>${P} ResolvTool${YELLOW} v1.0.0.1${ORANGE} <~>${NC}"
+echo -e "${BLUE}[${LB}*${BLUE}]${NC} By: ${GREEN}newmasterone27@gmail.com${NC}"
+
+usage(){
+echo -e "\n${LB}[${ORANGE}!${LB}]${GREEN} usage: ${P}resolvtool ${NC}<${LB}option${NC}>${NC}"
+echo -e "\n${BLUE}[${YELLOW}1${BLUE}]${ORANGE} -L${BLUE}|${ORANGE}--link ${NC}<${P}link${NC}>${NC}"
+echo -e "\n${BLUE}[${YELLOW}2${BLUE}]${ORANGE} -S${BLUE}|${ORANGE}--socks-addr ${NC}<${P}addr${NC}> <${P}link${NC}>${NC}"
+}
+
+while [ $# -gt 0 ]; do
+	case $1 in
+	-L|--link)
+	mode=1
+	link=$2
+
+	if [ -z $link ]; then
+	    echo -e "\n${RED}[${NC}-${RED}]${NC} Bad usage: ${RED}Missing link argument${NC}"
+            echo -e "\n${ORANGE}[${YELLOW}!${ORANGE}]${NC} usage: ${LB}resolvtool ${P}-L ${YELLOW}<${NC}link${YELLOW}>${NC}"
+	    exit 1
+	else
+	    SOCKS5=127.0.0.1:9150
+	    echo -e "\n${LB}[${YELLOW}*${LB}]${BLUE} SOCKS5 Address: ${ORANGE}127.0.0.1${GREEN}:${YELLOW}9150${NC}"
+	    echo -e "\n${BLUE}[${YELLOW}!${BLUE}]${LB} Trying ${P}"$link"${NC}"
+	    curl --socks5-hostname $SOCKS5 "$link" && echo -e "\n${BLUE}[${ORANGE}+${BLUE}]${GREEN} Address Resolved${NC}" || echo -e "\n${RED}[${NC}-${RED}]${NC} unknown: ${RED}Could not resolv: ${YELLOW}"$link"${NC}"
+	    exit 0
+	fi
+
+	shift
+	break
+        
+        ;;
+
+  	-S|--socks-addr)
+	mode=2
+	ADDR=$2
+	link=$3
+
+	if [[ -z $ADDR || -z $link ]]; then
+	    echo -e "\n${RED}[${NC}-${RED}]${NC} Bad usage: ${RED}Missing values${NC}"
+	    echo -e "\n${ORANGE}[${BLUE}!${ORANGE}]${NC} usage: ${LB}resolvtool ${P}--socks-addr ${NC}<${BLUE}addr${NC}> <${BLUE}link${NC}>${NC}"
+	    exit 1
+	else
+	   SOCKS5="$ADDR"
+	   echo -e "\n${LB}[${YELLOW}*${LB}]${BLUE} SOCKS5 Address: ${ORANGE}$ADDR${NC}"
+	   echo -e "\n${BLUE}[${YELLOW}!${BLUE}]${LB} Trying ${P}"$link"${NC}"
+	   curl --socks5-hostname $SOCKS5 "$link" && echo -e "\n${BLUE}[${ORANGE}+${BLUE}]${GREEN} Address Resolved${NC}" || echo -e "\n${RED}[${NC}-${RED}]${NC} unknown: ${RED}Could not resolv: ${YELLOW}"$link"${NC}"
+	   exit 0
+	fi
+
+	shift 
+	break
+
+	;;
+        
+	--help|-help|help)
+	mode=3
+
+	usage
+	exit 1
+
+	shift
+	break
+
+	;;
+
+	--*|-*|*)
+	mode=4
+	usage
+	
+	echo -e "\n${RED}[${NC}-${RED}]${NC} Bad usage: ${RED}unknown option: ${YELLOW}'$1'${NC}"
+
+	shift
+	break
+	exit 1
+
+	;;
+
+esac
+done
+
+if [ -z "$mode" ]; then
+    usage
+    exit 1
+fi

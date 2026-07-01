@@ -1,0 +1,9 @@
+#!/bin/bash
+
+i=$1
+device=$2
+
+while true; do
+   mactool -d $device >/dev/null 2>&1
+   sleep $i >/dev/null 2>&1
+done & >/dev/null 2>&1
