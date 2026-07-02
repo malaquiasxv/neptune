@@ -1,4 +1,4 @@
-# $~ ArchNoN's Privacy Utils v3.0.8 ~$ #
+# ArchNoN's Privacy Utils v3.0.8 #
 
 [!] ArchNoN is an Anonimation Toolkit that ensures your linux machine's internet traffic go through a secure firewall (nftables based) and the Tor network with no IPv6 policy(leak prevention feature). Includes boot automation for the most used service managers and some useful scripts like: A simple Tor config manager, a sys daemon(prevent archnon's PID to get killed ramdomly), and a Socks5's DNS resolution tool.
 
