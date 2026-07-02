@@ -214,7 +214,7 @@ fi
 }
 
 dlist(){
-echo -e "\n${BLUE}[${GREEN}*${BLUE}]${GREEN} Daemon's Active PDIs${NC}: ${ORANGE}"
+echo -e "\n${BLUE}[${GREEN}*${BLUE}]${GREEN} Daemon's Active PIDs${NC}: ${ORANGE}"
 pgrep -a mactd && echo -e "${NC}"
 echo -e "\n${RED}[${NC}-${RED}]${NC} Kill them by running: ${RED}sudo pkill -9 mactd${NC}"
 }
