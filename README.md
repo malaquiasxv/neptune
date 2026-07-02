@@ -1,6 +1,6 @@
 # Archnon Privacy Utils v3.0.10 #
 
-[!] Junk of Bash based scripts that can provide anonimity to anyone by applying many well known extreme linux privacy concepts as: Tor advanced proxying, Anonymous DNS(via socks5, tor), nftables firewall rules, systcl calls(as no ipv6, respond to pings) and MAC Address spoofing, all these include a boot automation and daemons.
+[!] Junk of Bash based scripts that can provide anonimity to anyone by applying many well known extreme linux privacy concepts as: Tor advanced proxying, Anonymous DNS(via socks5, tor), nftables firewall rules, sysctl calls(like full no ipv6, no respond to pings) and MAC Address spoofing, all these include a boot automation and daemons.
 
 ### [WARNINGS] ###
 - 1. ArchNoN is a personal project developed by newmasterone27@gmail.com, if you will use it you have to know that developer wont answer in case of any issue occurs in your machine(perhaps, issues are not common, in fact, they are very weird).
