@@ -18,138 +18,390 @@ LB="\e[36m"
 
 NC="\e[0m"
 
-usage(){
-echo -e "\n${LB}[${ORANGE}!${LB}]${GREEN} usage: ${P}resolvtool ${NC}<${LB}option${NC}>${NC}"
-echo -e "\n${BLUE}[${YELLOW}1${BLUE}]${ORANGE} -L${BLUE}|${ORANGE}--link ${NC}<${P}link${NC}>${NC}"
-echo -e "\n${BLUE}[${YELLOW}2${BLUE}]${ORANGE} -S${BLUE}|${ORANGE}--socks-addr ${NC}<${P}addr${NC}> <${P}link${NC}>${NC}"
-}
 
-if ! command -v figlet >/dev/null 2>&1; then
-        if [[ $(command -v apt) ]]; then
-                if ! apt install -y figlet; then
-                echo -e "\n${RED}[${NC}-${RED}]${NC} unknown: ${RED}Could not install missing binary: ${ORANGE}figlet${NC}"
+if ! (command -v macchanger >/dev/null 2>&1 && command -v figlet >/dev/null 2>&1); then
+
+       pkgs=(macchanger figlet)
+
+       if [[ $(command -v apt) ]]; then
+                if ! apt install -y ${pkgs[@]}; then
+                echo -e "\n${RED}[${NC}-${RED}]${NC} unknown: ${RED}Could not install missing binary: ${ORANGE}'${pkgs[@]}'${NC}"
                 exit 1
                 fi
         elif [[ $(command -v pacman) ]]; then
-                if ! pacman -Sy --noconfirm --needed --overwrite "*" figlet; then
-                echo -e "\n${RED}[${NC}-${RED}]${NC} unknown: ${RED}Could not install missing binary: ${ORANGE}figlet${NC}"
+                if ! pacman -Sy --noconfirm --needed --overwrite "*" ${pkgs[@]}; then
+                echo -e "\n${RED}[${NC}-${RED}]${NC} unknown: ${RED}Could not install missing binary: ${ORANGE}'${pkgs[@]}'${NC}"
                 exit 1
                 fi
         elif [[ $(command -v dnf) ]]; then
-                if ! dnf install -y --allowerasing figlet; then
-                echo -e "\n${RED}[${NC}-${RED}]${NC} unknown: ${RED}Could not install missing binary: ${ORANGE}figlet${NC}"
+                if ! dnf install -y --allowerasing ${pkgs[@]}; then
+                echo -e "\n${RED}[${NC}-${RED}]${NC} unknown: ${RED}Could not install missing binary: ${ORANGE}'${pkgs[@]}'${NC}"
                 exit 1
                 fi
         elif [[ $(command -v yum) ]]; then
-                if ! yum install -y figlet; then
-                echo -e "\n${RED}[${NC}-${RED}]${NC} unknown: ${RED}Could not install missing binary: ${ORANGE}figlet${NC}"
+                if ! yum install -y ${pkgs[@]}; then
+                echo -e "\n${RED}[${NC}-${RED}]${NC} unknown: ${RED}Could not install missing binary: ${ORANGE}'${pkgs[@]}'${NC}"
                 exit 1
                 fi
         elif [[ $(command -v xbps-install) ]]; then
-                if ! xbps-install -Sy -f -y "*" figlet; then
-                echo -e "\n${RED}[${NC}-${RED}]${NC} unknown: ${RED}Could not install missing binary: ${ORANGE}figlet${NC}"
+                if ! xbps-install -Sy -f -y "*" ${pkgs[@]}; then
+                echo -e "\n${RED}[${NC}-${RED}]${NC} unknown: ${RED}Could not install missing binary: ${ORANGE}'${pkgs[@]}'${NC}"
                 exit 1
                 fi
         elif [[ $(command -v zypper) ]]; then
-                if ! zypper install figlet; then
-                echo -e "\n${RED}[${NC}-${RED}]${NC} unknown: ${RED}Could not install missing binary: ${ORANGE}figlet${NC}"
+                if ! zypper install ${pkgs[@]}; then
+                echo -e "\n${RED}[${NC}-${RED}]${NC} unknown: ${RED}Could not install missing binary: ${ORANGE}'${pkgs[@]}'${NC}"
                 exit 1
                 fi
         elif [[ $(command -v apk) ]]; then
-                if ! apk add --no-cache figlet; then
-                echo -e "\n${RED}[${NC}-${RED}]${NC} unknown: ${RED}Could not install missing binary: ${ORANGE}figlet${NC}"
+                if ! apk add --no-cache ${pkgs[@]}; then
+                echo -e "\n${RED}[${NC}-${RED}]${NC} unknown: ${RED}Could not install missing binary: ${ORANGE}'${pkgs[@]}'${NC}"
                 exit 1
                 fi
         elif [[ $(command -v emerge) ]]; then
-                if ! emerge -v --oneshot --keep-going figlet; then
-                echo -e "\n${RED}[${NC}-${RED}]${NC} unknown: ${RED}Could not install missing binary: ${ORANGE}figlet${NC}"
+                if ! emerge -v --oneshot --keep-going ${pkgs[@]}; then
+                echo -e "\n${RED}[${NC}-${RED}]${NC} unknown: ${RED}Could not install missing binary: ${ORANGE}'${pkgs[@]}'${NC}"
                 exit 1
                 fi
         else
-                echo -e "\n${RED}[${NC}-${RED}]${NC} Not common: ${RED}Unsuported pkg manager, please install: ${ORANGE}'figlet'${NC}"
+                echo -e "\n${RED}[${NC}-${RED}]${NC} Not common: ${RED}Unsuported pkg manager, please install: ${ORANGE}'${pkgs[@]}'${NC}"
                 exit 1
         fi
 fi
 
+# Banner
 
-echo -e "${P}" && figlet ResolvTool
-echo -n -e "${ORANGE}v1.0.0.2"
+echo -e "${GREEN}" && figlet MacTool
+echo -n -e "${BLUE}v1.0.0.2 ${LB}-->${GREEN} Archnon's layer 1 anonymation util"
 echo -e "\n"
-echo -e "${BLUE}[${YELLOW}*${BLUE}] ${YELLOW}Developed By: ${ORANGE}newmasterone27@gmail.com${NC}"
+echo -e "${ORANGE}[${BLUE}*${ORANGE}] ${YELLOW}Developed By: ${ORANGE}newmasterone27@gmail.com ${NC}"
 
+usage(){
+echo -e "\n${ORANGE}[${YELLOW}*${ORANGE}]${GREEN} usage: ${P}sudo mactool ${NC}<${GREEN}option${NC}>${NC}"
+echo -e "\n${BLUE}[${ORANGE}1${BLUE}] ${ORANGE}change${NC}: ${NC}${GREEN}Change MAC Addr of device${NC}"
+echo -e "\n${BLUE}[${ORANGE}2${BLUE}] ${ORANGE}enable${NC}: ${GREEN}Enable MAC changing on boot${NC}"
+echo -e "\n${BLUE}[${ORANGE}3${BLUE}] ${ORANGE}disable${NC}: ${RED}Disable ${GREEN}MAC changing on boot${NC}"
+echo -e "\n${BLUE}[${ORANGE}4${BLUE}] ${ORANGE}daemon${NC}: ${GREEN}Daemonize MAC changing of device${NC}"
+echo -e "\n${BLUE}[${ORANGE}5${BLUE}] ${ORANGE}restore: ${GREEN}Restore Device's MAC${NC}"
+echo -e "\n${BLUE}[${ORANGE}6${BLUE}] ${ORANGE}show${NC}: ${GREEN}Show Available Devices${NC}"
+}
+
+change(){
+ip link set $device down >/dev/null 2>&1
+
+macchanger -r -b $device >/dev/null 2>&1
+
+ip link set $device up >/dev/null 2>&1
+}
+
+restore(){
+ip link set $device down >/dev/null 2>&1
+
+macchanger -p $device >/dev/null 2>&1
+
+ip link set $device up >/dev/null 2>&1
+}
+
+createsv(){
+if [ ! -f /etc/systemd/system/mactool.service ] && command -v systemctl >/dev/null 2>&1; then
+    touch /etc/systemd/system/mactool.service
+
+echo -e "\n[Unit]\nDescription=MacTool Service\n[Service]\nType=forking\nExecStart=mactool change $device\nRemainAfterExit=yes\nUser=root\n[Install]\nWantedBy=multi-user.target" >> /etc/systemd/system/mactool.service
+
+fi
+
+if [ ! -f /etc/sv/mactool/run ] && command -v runit >/dev/null 2>&1; then
+    mkdir -p /etc/sv/mactool/
+    touch /etc/sv/mactool/run
+
+    echo -e "#!/bin/sh\nexec mactool change $device" >> /etc/sv/mactool/run
+    chmod +x /etc/sv/mactool/run
+fi
+
+if [ ! -f /etc/init.d/mactool ] && command -v rc-service >/dev/null 2>&1; then
+    touch /etc/init.d/mactool
+
+echo "#!/sbin/openrc-run\nname=MacTool service\ncommand="mactool"\ncommand_args="change $device"\ncommand_background=true\npidfile="/run/${RC_SVCNAME}.pid"\ndepend() {\n   need net\n}" >> /etc/init.d/mactool
+
+   chmod +x /etc/init.d/mactool >/dev/null 2>&1
+fi
+}
+
+enable(){
+
+if [ -f /etc/systemd/system/mactool.service ] && command -v systemctl >/dev/null 2>&1; then
+
+    if systemctl is-enabled mactool >/dev/null 2>&1; then
+       echo -e "\n${P}[${NC}*${P}]${NC} MacTool is enabled${NC}"
+    else
+        systemctl enable mactool >/dev/null 2>&1 && echo -e "\n${ORANGE}[${NC}+${ORANGE}]${NC} Now MacTool is enabled${NC}" || echo -e "\n${RED}[${NC}-${RED}]${NC} unknown: ${RED}Could not enable MacTool${NC}"
+    fi
+fi
+
+if [ -f /etc/sv/mactool/run ] && command -v runit >/dev/null 2>&1; then
+
+        if [ -d /run/runit/service ]; then
+            RSDIR=/run/runit/service
+        elif [ -d /etc/service ]; then
+              RSDIR=/etc/service
+        elif [ -d /var/run/service ]; then
+              RSDIR=/var/run/service
+        fi
+
+      if ls -l $RSDIR/mactool/ >/dev/null 2>&1; then
+            echo -e "\n${P}[${NC}*${P}]${NC} MacTool is enabled${NC}"
+      else
+           ln -s /etc/sv/mactool $RSDIR >/dev/null 2>&1 && echo -e "\n${ORANGE}[${NC}+${ORANGE}]${NC} Now MacTool is enabled${NC}" || echo -e "\n${RED}[${NC}-${RED}]${NC} unknown: ${RED}Could not enable MacTool${NC}"
+      fi
+fi
+
+if [ -f /etc/init.d/mactool ] && command -v rc-update >/dev/null 2>&1; then
+
+      if sudo rc-update | grep -iE "mactool" >/dev/null 2>&1; then
+           echo -e "\n${P}[${NC}*${P}]${GREEN} MacTool is enabled${NC}"
+      else
+           sudo rc-update add mactool default >/dev/null 2>&1 && echo -e "\n${ORANGE}[${NC}+${ORANGE}]${NC} Now MacTool is enable${NC}" || echo -e "\n${RED}[${NC}-${RED}]${NC} unknown: ${RED}Could not enable MacTool${NC}"
+      fi
+fi
+}
+
+disable(){
+if [ -f /etc/systemd/system/mactool.service ] && command -v systemctl >/dev/null 2>&1; then
+
+    if ! systemctl is-enabled mactool >/dev/null 2>&1; then
+        echo -e "\n${RED}[${NC}+${RED}]${NC} MacTool is disabled${NC}"
+        exit 0
+    else
+
+    systemctl disable mactool >/dev/null 2>&1 && echo -e "\n${ORANGE}[${NC}*${ORANGE}]${NC} MacTool has been disable${NC}" || echo -e "\n${RED}[${NC}-${RED}]${NC} unknown: ${RED}Could not disable MacTool${NC}"
+    exit 1
+    fi
+fi
+
+if [ -f /etc/sv/mactool/run ] && command -v runit  >/dev/null 2>&1; then
+
+      if [ -d /run/runit/service ]; then
+          RSDIR=/run/runit/service
+
+      elif [ -d /etc/service ]; then
+              RSDIR=/etc/service
+
+      elif [ -d /var/run/service ]; then
+              RSDIR=/var/run/service
+      fi
+
+      if ! ls -l $RSDIR/mactool/ >/dev/null 2>&1; then
+           echo -e "\n${P}[${NC}*${P}]${NC} MacTool is already disabled${NC}"
+           exit 0
+      else
+
+      rm -rf $RSDIR/mactool >/dev/null 2>&1 && echo -e "\n${ORANGE}[${NC}*${ORANGE}]${NC} MacTool has been disable${NC}" || echo -e "\n${RED}[${NC}-${RED}]${NC} unknown: ${RED}Could not disable MacTool${NC}"
+      exit 1
+      fi
+fi
+
+if [ -f /etc/init.d/mactool ] && command -v rc-service  >/dev/null 2>&1; then
+
+      if ! rc-update | grep -iE "mactool" >/dev/null 2>&1; then
+           echo -e "\n${P}[${NC}*${P}]${NC} MacTool is already disabled${NC}"
+           exit 0
+      else
+
+      rc-update del mactool default >/dev/null 2>&1 && echo -e "\n${ORANGE}[${NC}*${ORANGE}]${NC} MacTool has been disable${NC}" || echo -e "\n${RED}[${NC}-${RED}]${NC} unknown: ${RED}Could not disable MacTool${NC}"
+      exit 1
+      fi
+fi
+}
+
+dlist(){
+echo -e "\n${BLUE}[${GREEN}*${BLUE}]${GREEN} Daemon's Active PDIs${NC}: ${ORANGE}"
+pgrep -a mactd && echo -e "${NC}"
+echo -e "\n${RED}[${NC}-${RED}]${NC} Kill them by running: ${RED}sudo pkill -9 mactd${NC}"
+}
 
 while [ $# -gt 0 ]; do
-	case $1 in
-	-L|--link)
-	mode=1
-	link=$2
+        case $1 in
 
-	if [ -z $link ]; then
-	    echo -e "\n${RED}[${NC}-${RED}]${NC} Bad usage: ${RED}Missing link argument${NC}"
-            echo -e "\n${ORANGE}[${YELLOW}!${ORANGE}]${NC} usage: ${LB}resolvtool ${P}-L ${YELLOW}<${NC}link${YELLOW}>${NC}"
-	    exit 1
-	else
-	    SOCKS5=127.0.0.1:9150
-	    echo -e "\n${LB}[${YELLOW}*${LB}]${BLUE} SOCKS5 Address: ${ORANGE}127.0.0.1${GREEN}:${YELLOW}9150${NC}"
-	    echo -e "\n${BLUE}[${YELLOW}!${BLUE}]${LB} Trying ${P}"$link"${NC}"
-	    curl --socks5-hostname $SOCKS5 "$link" && echo -e "\n${BLUE}[${ORANGE}+${BLUE}]${GREEN} Address Resolved${NC}" || echo -e "\n${RED}[${NC}-${RED}]${NC} unknown: ${RED}Could not resolv: ${YELLOW}"$link"${NC}"
-	    exit 0
-	fi
+        change|--device|-d)
+        mode=1
+        device=$2
 
-	shift
-	break
-        
+        if [ $EUID -ne 0 ]; then
+            echo -e "\n${RED}[${NC}-${RED}]${NC} Bad usage: ${RED}user is not root${NC}"
+            exit 1
+        fi
+
+        if [ -z $device ]; then
+            echo -e "\n${RED}[${NC}-${RED}]${NC} Bad usage: ${RED}Missing device name${NC}"
+            exit 1
+        fi
+
+        if ! ip a | grep "$device" >/dev/null 2>&1; then
+                echo -e "\n${RED}[${NC}-${RED}]${NC} Bad usage: ${YELLOW}'$device', ${RED}No such device${NC}"
+                exit 1
+        fi
+
+        change && echo -e "\n${ORANGE}[${BLUE}*${ORANGE}]${GREEN} $device's MAC was changed${ORANGE}" || echo -e "\n${RED}[${NC}-${RED}]${NC} unknown: ${RED}Could not change MAC Addr of: ${ORANGE}'$device'${NC}"
+        echo -e "${ORANGE}"
+        macchanger -s $device && echo -e "\n${NC}"
+        exit 1
+
+        shift
+        break
+
+
         ;;
 
-  	-S|--socks-addr)
-	mode=2
-	ADDR=$2
-	link=$3
+        --enable|enable)
+        mode=2
+        device=$2
 
-	if [[ -z $ADDR || -z $link ]]; then
-	    echo -e "\n${RED}[${NC}-${RED}]${NC} Bad usage: ${RED}Missing values${NC}"
-	    echo -e "\n${ORANGE}[${BLUE}!${ORANGE}]${NC} usage: ${LB}resolvtool ${P}--socks-addr ${NC}<${BLUE}addr${NC}> <${BLUE}link${NC}>${NC}"
-	    exit 1
-	else
-	   SOCKS5="$ADDR"
-	   echo -e "\n${LB}[${YELLOW}*${LB}]${BLUE} SOCKS5 Address: ${ORANGE}$ADDR${NC}"
-	   echo -e "\n${BLUE}[${YELLOW}!${BLUE}]${LB} Trying ${P}"$link"${NC}"
-	   curl --socks5-hostname $SOCKS5 "$link" && echo -e "\n${BLUE}[${ORANGE}+${BLUE}]${GREEN} Address Resolved${NC}" || echo -e "\n${RED}[${NC}-${RED}]${NC} unknown: ${RED}Could not resolv: ${YELLOW}"$link"${NC}"
-	   exit 0
-	fi
+        if [ $EUID -ne 0 ]; then
+            echo -e "\n${RED}[${NC}-${RED}]${NC} Bad usage: ${RED}user is not root${NC}"
+            exit 1
+        fi
 
-	shift 
-	break
+        if [ -z $device ]; then
+                echo -e "\n${RED}[${NC}-${RED}]${NC} Bad usage: ${RED}Missing device name${NC}"
+                exit 1
+        fi
 
-	;;
-        
-	--help|-help|help)
-	mode=3
+        if ! ip a | grep "$device" >/dev/null 2>&1; then
+                echo -e "\n${RED}[${NC}-${RED}]${NC} Bad usage: ${YELLOW}'$device', ${RED}No such device${NC}"
+                exit 1
+        fi
 
-	usage
-	exit 1
+        createsv
 
-	shift
-	break
+        enable
 
-	;;
+        exit 0
 
-	--*|-*|*)
-	mode=4
-	usage
-	
-	echo -e "\n${RED}[${NC}-${RED}]${NC} Bad usage: ${RED}unknown option: ${YELLOW}'$1'${NC}"
+        shift
+        break
 
-	shift
-	break
-	exit 1
+        ;;
 
-	;;
+        --disable|disable)
+        mode=3
+        device=$3
 
+        if [ $EUID -ne 0 ]; then
+                echo -e "\n${RED}[${NC}-${RED}]${NC} Bad usage: ${RED}user is not root${NC}"
+                exit 1
+        fi
+
+        createsv
+
+        disable
+
+        exit 0
+
+        shift
+        break
+
+        ;;
+
+        --daemon|daemon)
+        mode=4
+        i=$2
+        device=$3
+
+        if [ $EUID -ne 0 ]; then
+                echo -e "\n${RED}[${NC}-${RED}]${NC} Bad usage: ${RED}user is not root${NC}"
+                exit 1
+        fi
+
+        if pgrep -a mactd >/dev/null 2>&1; then
+                dlist
+        fi
+
+        if [ -z $i ]; then
+                echo -e "\n${RED}[${NC}-${RED}]${NC} Bad usage: ${RED}Missing interval(secs)${NC}"
+                exit 1
+        fi
+
+        if [ -z $device ]; then
+                echo -e "\n${RED}[${NC}-${RED}]${NC} Bad usage: ${RED}Missing device name${NC}"
+                exit 1
+        fi
+
+        if ! ip a | grep "$device" >/dev/null 2>&1; then
+                dlist
+                echo -e "\n${RED}[${NC}-${RED}]${NC} Bad usage: ${YELLOW}'$device', ${RED}No such device${NC}"
+                exit 1
+        fi
+
+        if ! command -v mactd >> /dev/null 2>&1; then
+                echo -e "\n${RED}[${NC}-${RED}]${NC} unknown: ${RED}Missing Daemon${BLUE}(${ORANGE}'mactd',${LB} it should be in your PATH: ${YELLOW}$PATH${BLUE})"
+                exit 1
+        else
+                mactd $i $device && echo -e "\n${ORANGE}[${BLUE}+${ORANGE}]${GREEN} New Daemon Launched !${NC}" || echo -e "\n${RED}[${NC}-${RED}]${NC} unknon: ${RED}Could not launch daemon${NC}"
+                exit 0
+        fi
+
+        shift
+        break
+
+        ;;
+
+        restore|--reset|reset)
+        mode=5
+        device=$2
+
+        if [ $EUID -ne 0 ]; then
+                echo -e "\n${RED}[${NC}-${RED}]${NC} Bad usage: ${RED}user is not root${NC}"
+                exit 1
+        fi
+
+
+        if [ -z $device ]; then
+                usage
+                echo -e "\n${RED}[${NC}-${RED}]${NC} Bad usage: ${RED}Missing device name${NC}"
+                exit 1
+        fi
+
+
+        if ! ip a | grep "$device" >/dev/null 2>&1; then
+                usage
+                echo -e "\n${RED}[${NC}-${RED}]${NC} Bad usage: ${YELLOW}'$device', ${RED}No such device${NC}"
+                exit 1
+        fi
+
+        restore && echo -e "\n${ORANGE}[${BLUE}!${ORANGE}]${GREEN} $device's MAC was restored${ORANGE}" || echo -e "\n${RED}[${NC}-${RED}]${NC} unknown: ${RED}Could not restore MAC of: ${YELLOW}'$device'${ORANGE}"
+        macchanger -s $device && echo -e "\n${NC}"
+        exit 0
+
+        shift
+        break
+
+        ;;
+
+        --show-devices|show)
+        mode=6
+
+        echo -e "\n${ORANGE}[${BLUE}!${ORANGE}]${GREEN} Available Devices${NC}:" && ip link || echo -e "\n${RED}[${NC}-${RED}]${NC} unknown: ${RED}could not show devices${NC}"
+
+        exit 0
+        shift
+        break
+
+        ;;
+
+        --*|-*|*)
+        mode=6
+
+        usage
+        exit 1
+
+        shift
+        break
+
+        ;;
 esac
 done
 
-if [ -z "$mode" ]; then
-    usage
-    exit 1
+if [ -z $mode ]; then
+        usage
+        exit 1
 fi
