@@ -353,7 +353,7 @@ HTTPTunnelPort 127.0.0.1:$HTTP
 EntryNodes {is},{ch},{fi},{ro}
 ExitNodes {is},{ch},{fi},{ro}
 StrictNodes 1
-MaxCircuitDirtiness 10
+MaxCircuitDirtiness 5
 ClientUseIPv6 0
 ClientPreferIPv6ORPORT 0
 ClientRejectInternalAddresses 1
