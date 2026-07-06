@@ -72,7 +72,7 @@ fi
 # Banner
 
 echo -e "${GREEN}" && figlet MacTool
-echo -n -e "${BLUE}v1.0.0.2 ${LB}-->${GREEN} Archnon's layer 1 anonymation util"
+echo -n -e "${BLUE}v1.0.0.2 ${LB}-->${GREEN} Archnon's layer 2 anonymation util"
 echo -e "\n"
 echo -e "${ORANGE}[${BLUE}*${ORANGE}] ${YELLOW}Developed By: ${ORANGE}newmasterone27@gmail.com ${NC}"
 
