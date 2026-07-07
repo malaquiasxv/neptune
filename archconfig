@@ -74,7 +74,7 @@ fi
 echo -e "${RED}" && figlet ArchConfig
 echo -n -e "${YELLOW}v1.0.0.2 ${LB}--> ${RED}Archnon's Torrc Custom Manager${NC}"
 echo -e "\n"
-echo -e "\n${BLUE}[${GREEN}*${BLUE}] ${GREEN}Developed By: ${ORANGE}newmasterone27@gmail.com${NC}"
+echo -e "\n${BLUE}[${GREEN}*${BLUE}] ${GREEN}Developed By: ${ORANGE}gmasterone@duck.com${NC}"
 
 # Tor Ports
 
