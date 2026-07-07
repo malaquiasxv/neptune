@@ -74,7 +74,7 @@ fi
 echo -e "${GREEN}" && figlet MacTool
 echo -n -e "${BLUE}v1.0.0.2 ${LB}-->${GREEN} Archnon's layer 2 anonymation util"
 echo -e "\n"
-echo -e "${ORANGE}[${BLUE}*${ORANGE}] ${YELLOW}Developed By: ${ORANGE}gmasterone@duck.com ${NC}"
+echo -e "${ORANGE}[${BLUE}*${ORANGE}] ${YELLOW}Coded By: ${ORANGE}gmasterone@duck.com ${NC}"
 
 usage(){
 echo -e "\n${ORANGE}[${YELLOW}*${ORANGE}]${GREEN} usage: ${P}sudo mactool ${NC}<${GREEN}option${NC}>${NC}"
